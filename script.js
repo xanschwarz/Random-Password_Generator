@@ -35,11 +35,47 @@ function writePassword() {
     }
   }
 
+  function generatePassword(length, lower, upper, number, special) {
+    var genPassword = '';
+    var passwordCriteria = [];
+    if (lower == true) {
+      genPassword += randomLowerLetter();
+      passwordCriteria.push('lower');
+    }
+    if (upper == true) {
+      genPassword += randomUpperLetter();
+      passwordCriteria.push('upper');
+    }
+    if (number == true) {
+      genPassword += randomNumber();
+      passwordCriteria.push('number');
+    }
+    if (special == true) {
+      genPassword += randomSpecialCharacter();
+      passwordCriteria.push('special');
+    }
+    var remainingLength = length - genPassword.length;
+    for (i = 0; i < remainingLength; i++) {
+      var whichRandomChar = passwordCriteria[Math.floor(Math.random() * passwordCriteria.length)];
+      if (whichRandomChar == 'lower') {
+        genPassword += randomLowerLetter();
+      }
+      else if (whichRandomChar == 'upper') {
+        genPassword += randomUpperLetter();
+      }
+      else if (whichRandomChar == 'number') {
+        genPassword += randomNumber();
+      }
+      else if (whichRandomChar == 'special') {
+        genPassword += randomSpecialCharacter();
+      }
+    }
+  }
 
 
   // The result of the generatePassword function is stored as variable password. Then the text area element is assigned to
   // passwordText, and the value of that is set equal to variable password.
-  // var password = generatePassword();
+  var password = generatePassword(passwordLength, passwordLower, passwordUpper, passwordNumber, passwordSpecial);
   // var passwordText = document.querySelector("#password");
   // passwordText.value = password;
 
