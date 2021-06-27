@@ -70,14 +70,16 @@ function writePassword() {
         genPassword += randomSpecialCharacter();
       }
     }
+    return genPassword;
   }
 
 
   // The result of the generatePassword function is stored as variable password. Then the text area element is assigned to
   // passwordText, and the value of that is set equal to variable password.
   var password = generatePassword(passwordLength, passwordLower, passwordUpper, passwordNumber, passwordSpecial);
-  // var passwordText = document.querySelector("#password");
-  // passwordText.value = password;
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+  passwordText.setAttribute("style", "border-style:solid; border-color:black");
 
 }
 
